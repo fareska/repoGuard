@@ -1,0 +1,17 @@
+services:
+  repoguard:
+    build: .
+    ports:
+      - "8787:8787"
+    environment:
+      SCAN_MODE: mock
+      ALLOW_MOCK_MODE: "true"
+      DATABASE_URL: /data/repoguard.sqlite
+      WEB_DIST: /app/apps/web/dist
+    volumes:
+      - repoguard-data:/data
+    read_only: true
+    tmpfs:
+      - /tmp
+volumes:
+  repoguard-data:
